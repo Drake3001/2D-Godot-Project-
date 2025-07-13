@@ -13,7 +13,6 @@ signal animation_complete(state)
 
 
 func _ready(): 
-	play("idle")
 	$timer_attack1.timeout.connect(_on_timer_attack1_timeout)
 	$timer_attack2.timeout.connect(_on_timer_attack2_timeout)
 	
@@ -39,9 +38,7 @@ func play_animation(state: State):
 			play("idle")
 
 func _on_timer_attack1_timeout():
-	print("Po timerze1")
 	animation_complete.emit()
 
 func _on_timer_attack2_timeout():
-	print("Po timerze2")
 	animation_complete.emit()

@@ -1,9 +1,10 @@
 extends Node
 
 
+const Const = preload("res://entity/player_char1/const_player.gd")
 
-const SPEED = 200.0
-const JUMP_VELOCITY = -400.0
+var SPEED = 200.0
+const JUMP_VELOCITY = Const.JUMP_VELOCITY
 var player: CharacterBody2D
 var movement_enabled=true
 var current_direction=0 
@@ -29,4 +30,8 @@ func update_movement(delta):
 		player.velocity.y+= 1000 * delta
 	if movement_enabled:
 		player.velocity.x=current_direction*SPEED
+		
+func swap_move_speed(new_ms):
+	SPEED=new_ms  
+	
 	

@@ -15,6 +15,10 @@ run/main_scene="uid://biinqn4dv58is"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[global_group]
+
+Player="Group for player characters"
+
 [input]
 
 attack={

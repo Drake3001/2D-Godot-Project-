@@ -456,7 +456,7 @@ one_shot = true
 wait_time = 0.6
 one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
 position = Vector2(5, 1)
 shape = SubResource("CapsuleShape2D_rgd54")
 

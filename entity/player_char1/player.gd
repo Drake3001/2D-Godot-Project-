@@ -11,6 +11,9 @@ enum State{
 enum Direction{LEFT=-1, 
 RIGHT=1 }
 
+const Const = preload("res://entity/player_char1/const_player.gd")
+
+
 @onready var animation_player=  $AnimatedSprite2D
 @onready var movement_component = $MovementComponent
 @onready var input_handler= $InputHandler
@@ -50,6 +53,7 @@ func on_attack(id):
 		return
 	else: 
 		is_attacking = true
+		movement_component.swap_move_speed(Const.ATTACKING_MS)
 		if id == 1:
 			change_state(State.ATTACK)
 		elif id == 2:
@@ -107,3 +111,4 @@ func on_animation_finished():
 	
 func reset_attacking():
 	is_attacking = false
+	movement_component.swap_move_speed(Const.SPEED)
