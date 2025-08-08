@@ -1,15 +1,4 @@
 extends CharacterBody2D
-enum State{
-	IDLE, 
-	RUNNING, 
-	ATTACK,
-	ATTACK2, 
-	JUMP,
-	FALLING, 
-	DEAD
-}
-enum Direction{LEFT=-1, 
-RIGHT=1 }
 
 const Const = preload("res://entity/player_char1/const_player.gd")
 
@@ -20,15 +9,14 @@ const Const = preload("res://entity/player_char1/const_player.gd")
 @onready var combat_handler= $CombatHandler
 
 
-var current_state= State.IDLE
-var previous_state= State.IDLE
+var current_state= Const.State.IDLE
+var previous_state= Const.State.IDLE
 var jump_pressed = false
 var attack_pressed = false
 var is_attacking=false
 var facing_direction= 0
 
 func _ready(): 
-	#enter_state(State.IDLE)
 	input_handler.jump_pressed.connect(on_jump)
 	input_handler.move_input.connect(movement_component.handle_move)
 	input_handler.move_input.connect(on_move_input)
@@ -40,7 +28,7 @@ func _ready():
 func on_jump(): 
 	if is_on_floor():
 		movement_component.handle_jump() 
-		change_state(State.JUMP)
+		change_state(Const.State.JUMP)
 
 func on_move_input(direction):
 	if direction!= facing_direction:
@@ -55,9 +43,9 @@ func on_attack(id):
 		is_attacking = true
 		movement_component.swap_move_speed(Const.ATTACKING_MS)
 		if id == 1:
-			change_state(State.ATTACK)
+			change_state(Const.State.ATTACK)
 		elif id == 2:
-			change_state(State.ATTACK2)
+			change_state(Const.State.ATTACK2)
 
 func _physics_process(delta):
 	update_state()
@@ -71,41 +59,41 @@ func change_state(new_state):
 		animation_player.play_animation(current_state)
 		
 func update_state():
-	if current_state==State.DEAD:
+	if current_state==Const.State.DEAD:
 		return
 	
 	if is_attacking:
-		if current_state != State.ATTACK and current_state != State.ATTACK2:
+		if current_state != Const.State.ATTACK and current_state != Const.State.ATTACK2:
 			call_deferred("reset_attacking")
 		return
 		
 	
 	if not is_on_floor(): 
 		if velocity.y>0: 
-			change_state(State.FALLING)
+			change_state(Const.State.FALLING)
 		else:
-			change_state(State.JUMP)
+			change_state(Const.State.JUMP)
 		return 
 		
 	
 		
 	if abs(facing_direction) > 0:
-		change_state(State.RUNNING)
+		change_state(Const.State.RUNNING)
 	else:
-		change_state(State.IDLE)
+		change_state(Const.State.IDLE)
 		
 		
 func print_state(): 
 	match current_state: 
-		State.IDLE: print("idle")
-		State.ATTACK: print("attack")
-		State.ATTACK2: print("attack2")
-		State.JUMP: print("jump")
-		State.FALLING: print("falling")
-		State.RUNNING: print("walk")
+		Const.State.IDLE: print("idle")
+		Const.State.ATTACK: print("attack")
+		Const.State.ATTACK2: print("attack2")
+		Const.State.JUMP: print("jump")
+		Const.State.FALLING: print("falling")
+		Const.State.RUNNING: print("walk")
 
 func on_animation_finished():
-	if current_state == State.ATTACK or current_state == State.ATTACK2:
+	if current_state == Const.State.ATTACK or current_state == Const.State.ATTACK2:
 		#is_attacking = false
 		call_deferred("reset_attacking")
 	

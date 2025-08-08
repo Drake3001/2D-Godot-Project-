@@ -388,7 +388,7 @@ script = ExtResource("4_o32oj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource("RectangleShape2D_jxu30")
-debug_color = Color(0.55531, 0.525945, 0.546092, 0.42)
+debug_color = Color(0.882353, 0.294118, 0.431373, 0.231373)
 script = SubResource("GDScript_jxu30")
 
 [node name="EnemyMovement" type="Node" parent="."]

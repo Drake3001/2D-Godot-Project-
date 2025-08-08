@@ -443,9 +443,12 @@ height = 48.0
 script = ExtResource("1_3hik6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -1)
 sprite_frames = SubResource("SpriteFrames_jvlau")
-animation = &"attack2"
+animation = &"walk"
 autoplay = "idle"
+frame = 4
+frame_progress = 0.573889
 script = ExtResource("10_s00fh")
 
 [node name="timer_attack1" type="Timer" parent="AnimatedSprite2D"]

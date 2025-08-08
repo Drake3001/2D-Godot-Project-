@@ -11,6 +11,6 @@ enum StateENM{
 }
 
 
-const SPEED=50
-const ATTACK_RANGE=40
-const MAX_HEIGHT_DIFF=50 
+const SPEED=100
+const ATTACK_RANGE=50
+const MAX_HEIGHT_DIFF=40 
