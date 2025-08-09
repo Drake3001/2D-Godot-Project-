@@ -61,8 +61,7 @@ func change_state(state: Const.StateENM):
 	animation_player.play_animation(state)
 	previous_state=current_state 
 	current_state=state
-	
-	
+
 func animation_finished():
 	is_attacking=false 
 	

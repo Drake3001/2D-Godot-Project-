@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://drevpms76wobq"]
+[gd_scene load_steps=75 format=3 uid="uid://drevpms76wobq"]
 
 [ext_resource type="Script" uid="uid://c4aajtdvxpkej" path="res://entity/player_char1/player.gd" id="1_3hik6"]
 [ext_resource type="Texture2D" uid="uid://bsaiv1u7ebguo" path="res://assets/Sprites_hero/Idle.png" id="1_hsefk"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://ch6gr7mifrjj8" path="res://entity/player_char1/input_handler.gd" id="7_n5qbp"]
 [ext_resource type="Script" uid="uid://fftfrr64odly" path="res://entity/player_char1/animation_controller.gd" id="10_s00fh"]
 [ext_resource type="Script" uid="uid://br4peb3ensm2i" path="res://entity/player_char1/combat_handler.gd" id="13_5mv77"]
+[ext_resource type="Script" uid="uid://b0wt112t8hh3l" path="res://entity/player_char1/hitbox_manager.gd" id="14_q1tqi"]
+[ext_resource type="Script" uid="uid://bh5in3etd44eb" path="res://entity/player_char1/hurtbox.gd" id="15_bw32y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvlau"]
 atlas = ExtResource("1_qd8qs")
@@ -337,7 +339,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dmg_taken",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -439,16 +441,26 @@ animations = [{
 radius = 11.0
 height = 48.0
 
+[sub_resource type="GDScript" id="GDScript_5mv77"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q1tqi"]
+radius = 1.0
+height = 4.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bw32y"]
+radius = 7.0
+height = 40.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_3hik6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2, -1)
+position = Vector2(-3, 0)
 sprite_frames = SubResource("SpriteFrames_jvlau")
-animation = &"walk"
+animation = &"dmg_taken"
 autoplay = "idle"
-frame = 4
-frame_progress = 0.573889
+frame = 3
+frame_progress = 1.0
 script = ExtResource("10_s00fh")
 
 [node name="timer_attack1" type="Timer" parent="AnimatedSprite2D"]
@@ -459,9 +471,17 @@ one_shot = true
 wait_time = 0.6
 one_shot = true
 
+[node name="timer_take_dmg" type="Timer" parent="AnimatedSprite2D"]
+wait_time = 0.5
+one_shot = true
+
+[node name="timer_invull" type="Timer" parent="AnimatedSprite2D"]
+wait_time = 0.6
+one_shot = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
-position = Vector2(5, 1)
 shape = SubResource("CapsuleShape2D_rgd54")
+script = SubResource("GDScript_5mv77")
 
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("6_p7obe")
@@ -471,3 +491,19 @@ script = ExtResource("7_n5qbp")
 
 [node name="CombatHandler" type="Node" parent="."]
 script = ExtResource("13_5mv77")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_q1tqi")
+debug_color = Color(0.951243, 2.5028e-06, 0.564623, 0.42)
+
+[node name="HitHurtBoxManager" type="Node" parent="."]
+script = ExtResource("14_q1tqi")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("15_bw32y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_bw32y")
+debug_color = Color(0.447275, 0.596947, 0, 0.42)
