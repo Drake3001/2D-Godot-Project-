@@ -1,6 +1,6 @@
 [gd_scene load_steps=75 format=3 uid="uid://drevpms76wobq"]
 
-[ext_resource type="Script" uid="uid://c4aajtdvxpkej" path="res://entity/player_char1/player.gd" id="1_3hik6"]
+[ext_resource type="Script" uid="uid://c4aajtdvxpkej" path="res://entity/player_char1/player.gd" id="1_bw32y"]
 [ext_resource type="Texture2D" uid="uid://bsaiv1u7ebguo" path="res://assets/Sprites_hero/Idle.png" id="1_hsefk"]
 [ext_resource type="Texture2D" uid="uid://c16l0ytyfjhiw" path="res://assets/Sprites_hero/Attack1.png" id="1_qd8qs"]
 [ext_resource type="Texture2D" uid="uid://c1xkxc7xue4qb" path="res://assets/Sprites_hero/Run.png" id="3_3hik6"]
@@ -452,23 +452,21 @@ radius = 7.0
 height = 40.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_3hik6")
+script = ExtResource("1_bw32y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(-6, 0)
 sprite_frames = SubResource("SpriteFrames_jvlau")
-animation = &"dmg_taken"
+animation = &"idle"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 script = ExtResource("10_s00fh")
 
 [node name="timer_attack1" type="Timer" parent="AnimatedSprite2D"]
-wait_time = 0.3
+wait_time = 0.35
 one_shot = true
 
 [node name="timer_attack2" type="Timer" parent="AnimatedSprite2D"]
-wait_time = 0.6
+wait_time = 0.7
 one_shot = true
 
 [node name="timer_take_dmg" type="Timer" parent="AnimatedSprite2D"]

@@ -1,0 +1,116 @@
+[gd_scene load_steps=20 format=3 uid="uid://c7r222xsjxaim"]
+
+[ext_resource type="Script" uid="uid://hpycjl74lwc3" path="res://entity/enemy_temp/enemy_base.gd" id="1_3b2tb"]
+[ext_resource type="Script" uid="uid://dhjwvrdepaoy" path="res://entity/enemy_temp/state_machine.gd" id="2_0nhjj"]
+[ext_resource type="Script" uid="uid://bh6nav4lj56t" path="res://entity/enemy_temp/movement_component.gd" id="3_61dyh"]
+[ext_resource type="Script" uid="uid://g4m45rk2cawb" path="res://states/enemy_idle.gd" id="3_aj1gc"]
+[ext_resource type="Texture2D" uid="uid://bmmf85e7wvint" path="res://assets/Skeleton/Idle.png" id="3_fplpg"]
+[ext_resource type="Texture2D" uid="uid://nvc4281csmln" path="res://assets/Skeleton/Walk.png" id="4_aj1gc"]
+[ext_resource type="Script" uid="uid://dfv0luaqua6uf" path="res://entity/enemy_temp/combat_handler.gd" id="4_fplpg"]
+[ext_resource type="Script" uid="uid://d32btqo61uo6t" path="res://states/enemy_walk.gd" id="4_pl7vb"]
+[ext_resource type="Script" uid="uid://dl5k7keth1csn" path="res://entity/enemy_temp/hitbox_manager.gd" id="5_aj1gc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl7vb"]
+atlas = ExtResource("3_fplpg")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tp6lj"]
+atlas = ExtResource("3_fplpg")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvaon"]
+atlas = ExtResource("3_fplpg")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qaof"]
+atlas = ExtResource("3_fplpg")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrm23"]
+atlas = ExtResource("4_aj1gc")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdd48"]
+atlas = ExtResource("4_aj1gc")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gefvh"]
+atlas = ExtResource("4_aj1gc")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vckm"]
+atlas = ExtResource("4_aj1gc")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aiqiw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl7vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tp6lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvaon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qaof")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrm23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdd48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gefvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vckm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61dyh"]
+size = Vector2(28, 50)
+
+[node name="EnemyTemp" type="CharacterBody2D"]
+script = ExtResource("1_3b2tb")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_0nhjj")
+
+[node name="Enemy_Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_aj1gc")
+metadata/_custom_type_script = "uid://g4m45rk2cawb"
+
+[node name="Enemy_walk" type="Node" parent="StateMachine"]
+script = ExtResource("4_pl7vb")
+metadata/_custom_type_script = "uid://d32btqo61uo6t"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aiqiw")
+animation = &"walk"
+frame = 2
+frame_progress = 0.935146
+
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("3_61dyh")
+
+[node name="CombatHandler" type="Node" parent="."]
+script = ExtResource("4_fplpg")
+
+[node name="HitboxManager" type="Node" parent="."]
+script = ExtResource("5_aj1gc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, 0)
+shape = SubResource("RectangleShape2D_61dyh")

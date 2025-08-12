@@ -22,8 +22,10 @@ func handle_move(direction):
 		direction_changed.emit(direction)
 
 func handle_jump(): 
-	if player.is_on_floor():
+	if player.is_on_floor() and movement_enabled:
 		player.velocity.y=JUMP_VELOCITY
+		return true
+	return false 
 
 func update_movement(delta): 
 	if not player.is_on_floor(): 

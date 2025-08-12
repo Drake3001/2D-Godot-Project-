@@ -33,8 +33,8 @@ func _ready():
 
 func on_jump(): 
 	if is_on_floor():
-		movement_component.handle_jump() 
-		change_state(Const.State.JUMP)
+		if (movement_component.handle_jump()):
+			change_state(Const.State.JUMP)
 
 func on_move_input(direction):
 	if current_state==Const.State.ATTACK or current_state==Const.State.ATTACK2:
@@ -58,7 +58,6 @@ func on_attack(id):
 		hitbox_manager.set_hitboxes_for_attack(id, turned)
 		
 func _physics_process(delta):
-	#print_state()
 	update_state()
 	movement_component.update_movement(delta)
 	move_and_slide()
@@ -89,35 +88,27 @@ func update_state():
 		
 	
 		
-	if abs(facing_direction) > 0:
+	if abs(self.velocity.x) > 0:
 		change_state(Const.State.RUNNING)
 	else:
 		change_state(Const.State.IDLE)
 		
 		
-func print_state(): 
-	match current_state: 
-		Const.State.IDLE: print("idle")
-		Const.State.ATTACK: print("attack")
-		Const.State.ATTACK2: print("attack2")
-		Const.State.JUMP: print("jump")
-		Const.State.FALLING: print("falling")
-		Const.State.RUNNING: print("walk")
-		Const.State.TAKING_DMG: print("taking_ dmg")
-
+#d
 func on_animation_finished():
 	if current_state == Const.State.ATTACK or current_state == Const.State.ATTACK2:
 		#is_attacking = false
+		hitbox_manager.disable_hitbox()
 		call_deferred("reset_attacking")
 	if current_state == Const.State.TAKING_DMG:
-		print("Włączam movement i wychodzę z taking dmg")
 		taking_dmg=false  
 		movement_component.enable_movement()
 		change_state(Const.State.IDLE)
 	
 func reset_attacking():
-	is_attacking = false
 	movement_component.swap_move_speed(Const.SPEED)
+	is_attacking = false
+	change_state(Const.State.IDLE)
 	
 func take_dmg():
 	if taking_dmg: 

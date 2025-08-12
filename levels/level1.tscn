@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://biinqn4dv58is"]
+[gd_scene load_steps=10 format=3 uid="uid://biinqn4dv58is"]
 
 [ext_resource type="PackedScene" uid="uid://drevpms76wobq" path="res://entity/player_char1/player.tscn" id="1_sjb42"]
 [ext_resource type="Texture2D" uid="uid://tj1pjjvmkq5e" path="res://assets/tileset/Tileset.png" id="2_pdtm5"]
 [ext_resource type="Texture2D" uid="uid://bveejoc2e1mt6" path="res://assets/tileset/BG1.png" id="3_b3oru"]
 [ext_resource type="PackedScene" uid="uid://dbxdh7et01ps5" path="res://entity/nightborne_enemy/nightborne1.tscn" id="4_ua5ty"]
 [ext_resource type="PackedScene" uid="uid://davtirpkas7fa" path="res://entity/necromancer/necromancer_enemy.tscn" id="5_61w3m"]
+[ext_resource type="PackedScene" uid="uid://c7r222xsjxaim" path="res://entity/enemy_temp/enemy_temp.tscn" id="6_pdpul"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3oru"]
 texture = ExtResource("2_pdtm5")
@@ -343,14 +344,6 @@ sources/1 = SubResource("TileSetAtlasSource_ua5ty")
 
 [node name="Level1" type="Node2D"]
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_sjb42")]
-z_index = 1
-position = Vector2(-263, -81)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(7, 2)
-zoom = Vector2(3, 3)
-
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-7, 2)
 tile_set = SubResource("TileSet_ua5ty")
@@ -363,3 +356,12 @@ position = Vector2(-279, -8)
 
 [node name="NecromancerEnemy" parent="." instance=ExtResource("5_61w3m")]
 position = Vector2(387, -116)
+
+[node name="Player2" parent="." instance=ExtResource("1_sjb42")]
+position = Vector2(-91, -8)
+
+[node name="Camera2D" type="Camera2D" parent="Player2"]
+zoom = Vector2(3, 3)
+
+[node name="EnemyTemp" parent="." instance=ExtResource("6_pdpul")]
+position = Vector2(29, -9)
