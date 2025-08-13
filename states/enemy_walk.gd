@@ -1,5 +1,5 @@
 extends State 
-class_name Enemy_walk
+class_name Enemy_Walk
 
 func enter():
 	print("wchodze w walk ")

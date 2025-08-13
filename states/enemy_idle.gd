@@ -7,5 +7,8 @@ func enter():
 func exit():
 	print("wychodzę z idle") 
 
-func update(delta: float)-> void:
-	transition.emit(self, "Enemy_walk")
+func handle_event(code: String): 
+	if code=="PlayerInViewRange": 
+		transition.emit(self, "Enemy_chase")
+	if code=="PlayerInAttackRange": 
+		transition.emit(self, "Enemy_attack")

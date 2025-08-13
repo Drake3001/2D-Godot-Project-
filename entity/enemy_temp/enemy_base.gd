@@ -37,6 +37,7 @@ func _on_moved(new_position: Vector2) -> void:
 
 func _on_attacked(target: Node) -> void:
 	anim_player.play("attack")
+	
 
 func _on_hit(damage: int, source: Node) -> void:
 	take_damage(damage)

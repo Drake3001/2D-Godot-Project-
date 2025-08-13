@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7r222xsjxaim"]
+[gd_scene load_steps=24 format=3 uid="uid://c7r222xsjxaim"]
 
 [ext_resource type="Script" uid="uid://hpycjl74lwc3" path="res://entity/enemy_temp/enemy_base.gd" id="1_3b2tb"]
 [ext_resource type="Script" uid="uid://dhjwvrdepaoy" path="res://entity/enemy_temp/state_machine.gd" id="2_0nhjj"]
@@ -8,7 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://nvc4281csmln" path="res://assets/Skeleton/Walk.png" id="4_aj1gc"]
 [ext_resource type="Script" uid="uid://dfv0luaqua6uf" path="res://entity/enemy_temp/combat_handler.gd" id="4_fplpg"]
 [ext_resource type="Script" uid="uid://d32btqo61uo6t" path="res://states/enemy_walk.gd" id="4_pl7vb"]
+[ext_resource type="Script" uid="uid://cdba46iuiq28v" path="res://states/enemy_chase.gd" id="5_8qaof"]
 [ext_resource type="Script" uid="uid://dl5k7keth1csn" path="res://entity/enemy_temp/hitbox_manager.gd" id="5_aj1gc"]
+[ext_resource type="Script" uid="uid://bhhbvvs0lv8d7" path="res://states/enemy_hurt.gd" id="6_qrm23"]
+[ext_resource type="Script" uid="uid://betjdta38lcfs" path="res://states/enemy_attack.gd" id="7_vdd48"]
+[ext_resource type="Script" uid="uid://csvht5w8te6i5" path="res://states/enemy_death.gd" id="8_gefvh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pl7vb"]
 atlas = ExtResource("3_fplpg")
@@ -95,6 +99,22 @@ metadata/_custom_type_script = "uid://g4m45rk2cawb"
 [node name="Enemy_walk" type="Node" parent="StateMachine"]
 script = ExtResource("4_pl7vb")
 metadata/_custom_type_script = "uid://d32btqo61uo6t"
+
+[node name="Enemy_Chase" type="Node" parent="StateMachine"]
+script = ExtResource("5_8qaof")
+metadata/_custom_type_script = "uid://cdba46iuiq28v"
+
+[node name="Enemy_Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("6_qrm23")
+metadata/_custom_type_script = "uid://bhhbvvs0lv8d7"
+
+[node name="Enemy_Attack" type="Node" parent="StateMachine"]
+script = ExtResource("7_vdd48")
+metadata/_custom_type_script = "uid://betjdta38lcfs"
+
+[node name="Enemy_Death" type="Node" parent="StateMachine"]
+script = ExtResource("8_gefvh")
+metadata/_custom_type_script = "uid://csvht5w8te6i5"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_aiqiw")

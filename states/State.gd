@@ -7,5 +7,5 @@ func enter():
 	pass 
 func exit():
 	pass 
-func update(delta: float) -> void:
+func handle_event(code: String):
 	pass 
