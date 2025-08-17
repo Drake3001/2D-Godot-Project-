@@ -2,8 +2,10 @@ extends State
 class_name Enemy_Walk
 
 func enter():
-	print("wchodze w walk ")
+	print("Enter - Walk")
+	
 func exit(): 
-	print("wychodze z walk")
-func update(delta: float)-> void: 
-	pass  
+	print("Exit - Walk")
+	
+func handle_event(code: String):
+	pass

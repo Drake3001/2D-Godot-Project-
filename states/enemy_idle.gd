@@ -1,14 +1,15 @@
 extends State 
 class_name Enemy_Idle
 
-func enter(): 
-	print("wchodzę w idle")
+func enter():
+	print("Enter - Idle")
 
 func exit():
-	print("wychodzę z idle") 
+	print("Exit - Idle")
 
-func handle_event(code: String): 
-	if code=="PlayerInViewRange": 
+func handle_event(code: String):
+	super(code)
+	if code == "PlayerInViewRange":
 		transition.emit(self, "Enemy_chase")
-	if code=="PlayerInAttackRange": 
+	if code == "PlayerInAttackRange":
 		transition.emit(self, "Enemy_attack")

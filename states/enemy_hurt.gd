@@ -2,10 +2,10 @@ extends State
 class_name Enemy_Hurt
 
 func enter(): 
-	print("wchodzę w hurt")
+	print("Enter - hurt")
 
 func exit():
-	print("wychodzę z hurt") 
+	print("Exit - Hurt") 
 
-func update(delta: float)-> void:
+func handle_event(code: String):
 	pass

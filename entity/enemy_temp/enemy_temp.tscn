@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c7r222xsjxaim"]
+[gd_scene load_steps=29 format=3 uid="uid://c7r222xsjxaim"]
 
 [ext_resource type="Script" uid="uid://hpycjl74lwc3" path="res://entity/enemy_temp/enemy_base.gd" id="1_3b2tb"]
 [ext_resource type="Script" uid="uid://dhjwvrdepaoy" path="res://entity/enemy_temp/state_machine.gd" id="2_0nhjj"]
@@ -13,22 +13,9 @@
 [ext_resource type="Script" uid="uid://bhhbvvs0lv8d7" path="res://states/enemy_hurt.gd" id="6_qrm23"]
 [ext_resource type="Script" uid="uid://betjdta38lcfs" path="res://states/enemy_attack.gd" id="7_vdd48"]
 [ext_resource type="Script" uid="uid://csvht5w8te6i5" path="res://states/enemy_death.gd" id="8_gefvh"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pl7vb"]
-atlas = ExtResource("3_fplpg")
-region = Rect2(0, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tp6lj"]
-atlas = ExtResource("3_fplpg")
-region = Rect2(150, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bvaon"]
-atlas = ExtResource("3_fplpg")
-region = Rect2(300, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8qaof"]
-atlas = ExtResource("3_fplpg")
-region = Rect2(450, 0, 150, 150)
+[ext_resource type="Script" uid="uid://d3fi384dvb5x8" path="res://entity/enemy_temp/body_animation.gd" id="11_gefvh"]
+[ext_resource type="Script" uid="uid://dbdojb65tdqe1" path="res://entity/enemy_temp/view_range.gd" id="14_vdd48"]
+[ext_resource type="Script" uid="uid://ed64gftlewio" path="res://entity/enemy_temp/attack_range.gd" id="15_gefvh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrm23"]
 atlas = ExtResource("4_aj1gc")
@@ -46,8 +33,41 @@ region = Rect2(300, 0, 150, 150)
 atlas = ExtResource("4_aj1gc")
 region = Rect2(450, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl7vb"]
+atlas = ExtResource("3_fplpg")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tp6lj"]
+atlas = ExtResource("3_fplpg")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvaon"]
+atlas = ExtResource("3_fplpg")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qaof"]
+atlas = ExtResource("3_fplpg")
+region = Rect2(450, 0, 150, 150)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_aiqiw"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrm23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdd48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gefvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vckm")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pl7vb")
@@ -83,8 +103,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vckm"]
+radius = 72.0069
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aiqiw"]
+radius = 33.0606
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_61dyh"]
-size = Vector2(28, 50)
+size = Vector2(23, 46)
 
 [node name="EnemyTemp" type="CharacterBody2D"]
 script = ExtResource("1_3b2tb")
@@ -116,11 +142,11 @@ metadata/_custom_type_script = "uid://betjdta38lcfs"
 script = ExtResource("8_gefvh")
 metadata/_custom_type_script = "uid://csvht5w8te6i5"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="BodyAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, -26)
 sprite_frames = SubResource("SpriteFrames_aiqiw")
-animation = &"walk"
-frame = 2
-frame_progress = 0.935146
+animation = &"chase"
+script = ExtResource("11_gefvh")
 
 [node name="MovementComponent" type="Node" parent="."]
 script = ExtResource("3_61dyh")
@@ -128,9 +154,26 @@ script = ExtResource("3_61dyh")
 [node name="CombatHandler" type="Node" parent="."]
 script = ExtResource("4_fplpg")
 
-[node name="HitboxManager" type="Node" parent="."]
+[node name="HitboxManager" type="Node2D" parent="."]
 script = ExtResource("5_aj1gc")
 
+[node name="ViewRange" type="Area2D" parent="HitboxManager"]
+script = ExtResource("14_vdd48")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxManager/ViewRange"]
+position = Vector2(0, -23)
+shape = SubResource("CircleShape2D_3vckm")
+
+[node name="AttackRange" type="Area2D" parent="HitboxManager"]
+script = ExtResource("15_gefvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxManager/AttackRange"]
+position = Vector2(0, -23)
+shape = SubResource("CircleShape2D_aiqiw")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6, 0)
+position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_61dyh")
+
+[connection signal="body_entered" from="HitboxManager/ViewRange" to="HitboxManager/ViewRange" method="_on_body_entered"]
+[connection signal="body_exited" from="HitboxManager/ViewRange" to="HitboxManager/ViewRange" method="_on_body_exited"]

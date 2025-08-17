@@ -2,14 +2,14 @@ extends State
 class_name Enemy_Chase
 
 func enter(): 
-	print("wchodzę w chase")
+	print("Enter - Chase")
 
 func exit():
-	print("wychodzę z chase") 
+	print("Exit - Chase") 
 
-func update(delta: float)-> void:
-	pass
-func player_exited()->void:
-	transition.emit(self, "enemy_idle")
-func player_in_range()-> void: 
-	transition.emit(self, "enemy_attack") 
+func handle_event(code: String):
+	super(code)
+	if code == "PlayerOutOfViewRange":
+		transition.emit(self, "Enemy_idle")
+	if code == "PlayerInAttackRange":
+		transition.emit(self, "Enemy_attack")

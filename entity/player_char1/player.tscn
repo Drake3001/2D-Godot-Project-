@@ -451,7 +451,7 @@ height = 4.0
 radius = 7.0
 height = 40.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_bw32y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
