@@ -360,4 +360,4 @@ position = Vector2(-91, -8)
 zoom = Vector2(3, 3)
 
 [node name="EnemyTemp" parent="." instance=ExtResource("6_pdpul")]
-position = Vector2(25, 18)
+position = Vector2(22, -1)

@@ -11,11 +11,12 @@ func _ready():
 		if child is State: 
 			states[child.name.to_lower()]=child 
 			child.transition.connect(on_child_transitioned)
+func initialize():
 	current_state= states["enemy_idle"]
 	if current_state:
 		current_state.enter()
+		print("emituje stan poczatkowu")
 		state_changed.emit("enemy_idle")
-
 func on_child_transitioned(state, new_state_name)-> void :
 	if state!= current_state: 
 		return

@@ -175,5 +175,6 @@ shape = SubResource("CircleShape2D_aiqiw")
 position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_61dyh")
 
+[connection signal="ready" from="MovementComponent" to="MovementComponent" method="_on_ready"]
 [connection signal="body_entered" from="HitboxManager/ViewRange" to="HitboxManager/ViewRange" method="_on_body_entered"]
 [connection signal="body_exited" from="HitboxManager/ViewRange" to="HitboxManager/ViewRange" method="_on_body_exited"]
