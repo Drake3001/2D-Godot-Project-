@@ -17,6 +17,7 @@ func initialize():
 		current_state.enter()
 		print("emituje stan poczatkowu")
 		state_changed.emit("enemy_idle")
+
 func on_child_transitioned(state, new_state_name)-> void :
 	if state!= current_state: 
 		return

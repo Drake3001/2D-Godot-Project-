@@ -8,4 +8,5 @@ func enter():
 func exit():
 	pass 
 func handle_event(code: String):
-	pass
+	if code=="TakeDmg": 
+		transition.emit(self, "Enemy_hurt")

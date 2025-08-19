@@ -490,7 +490,7 @@ script = ExtResource("7_n5qbp")
 [node name="CombatHandler" type="Node" parent="."]
 script = ExtResource("13_5mv77")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=["Player_Attack"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_q1tqi")

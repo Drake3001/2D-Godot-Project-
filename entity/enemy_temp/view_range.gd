@@ -8,4 +8,4 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	if body.is_in_group("Player"):
-		player_body_update.emit("PlayerOutOfViewRange", null)
+		player_body_update.emit("PlayerOutOfViewRange")

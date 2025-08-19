@@ -21,7 +21,6 @@ func enable_hitbox():
 	hitbox_shape.disabled = false
 
 func disable_hitbox():
-	print("Wyłączam hitboxy")
 	hitbox.monitoring = false
 	hitbox_shape.disabled = true
 	

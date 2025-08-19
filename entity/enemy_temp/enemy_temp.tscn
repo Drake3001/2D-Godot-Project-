@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c7r222xsjxaim"]
+[gd_scene load_steps=45 format=3 uid="uid://c7r222xsjxaim"]
 
 [ext_resource type="Script" uid="uid://hpycjl74lwc3" path="res://entity/enemy_temp/enemy_base.gd" id="1_3b2tb"]
 [ext_resource type="Script" uid="uid://dhjwvrdepaoy" path="res://entity/enemy_temp/state_machine.gd" id="2_0nhjj"]
@@ -13,9 +13,44 @@
 [ext_resource type="Script" uid="uid://bhhbvvs0lv8d7" path="res://states/enemy_hurt.gd" id="6_qrm23"]
 [ext_resource type="Script" uid="uid://betjdta38lcfs" path="res://states/enemy_attack.gd" id="7_vdd48"]
 [ext_resource type="Script" uid="uid://csvht5w8te6i5" path="res://states/enemy_death.gd" id="8_gefvh"]
+[ext_resource type="Texture2D" uid="uid://c5s2guphscoxm" path="res://assets/Skeleton/Attack.png" id="9_3vckm"]
+[ext_resource type="Texture2D" uid="uid://dojdh4japqn27" path="res://assets/Skeleton/Take Hit.png" id="11_g6i7l"]
 [ext_resource type="Script" uid="uid://d3fi384dvb5x8" path="res://entity/enemy_temp/body_animation.gd" id="11_gefvh"]
 [ext_resource type="Script" uid="uid://dbdojb65tdqe1" path="res://entity/enemy_temp/view_range.gd" id="14_vdd48"]
 [ext_resource type="Script" uid="uid://ed64gftlewio" path="res://entity/enemy_temp/attack_range.gd" id="15_gefvh"]
+[ext_resource type="Script" uid="uid://l7rbmw4phgnu" path="res://entity/enemy_temp/hurtbox.gd" id="18_aiqiw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiqiw"]
+atlas = ExtResource("9_3vckm")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6i7l"]
+atlas = ExtResource("9_3vckm")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li1su"]
+atlas = ExtResource("9_3vckm")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80eq1"]
+atlas = ExtResource("9_3vckm")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs8n6"]
+atlas = ExtResource("9_3vckm")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1duk"]
+atlas = ExtResource("9_3vckm")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rc2a"]
+atlas = ExtResource("9_3vckm")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dehlw"]
+atlas = ExtResource("9_3vckm")
+region = Rect2(1050, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrm23"]
 atlas = ExtResource("4_aj1gc")
@@ -31,6 +66,22 @@ region = Rect2(300, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vckm"]
 atlas = ExtResource("4_aj1gc")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7mvr"]
+atlas = ExtResource("11_g6i7l")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o2v0"]
+atlas = ExtResource("11_g6i7l")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htgyu"]
+atlas = ExtResource("11_g6i7l")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wav55"]
+atlas = ExtResource("11_g6i7l")
 region = Rect2(450, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pl7vb"]
@@ -53,6 +104,35 @@ region = Rect2(450, 0, 150, 150)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_aiqiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6i7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li1su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80eq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs8n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1duk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rc2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dehlw")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qrm23")
 }, {
 "duration": 1.0,
@@ -66,6 +146,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"chase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7mvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o2v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htgyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wav55")
+}],
+"loop": true,
+"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -104,10 +201,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vckm"]
-radius = 72.0069
+radius = 99.0202
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aiqiw"]
-radius = 33.0606
+radius = 41.0122
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vckm"]
+size = Vector2(34, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_61dyh"]
 size = Vector2(23, 46)
@@ -134,9 +234,16 @@ metadata/_custom_type_script = "uid://cdba46iuiq28v"
 script = ExtResource("6_qrm23")
 metadata/_custom_type_script = "uid://bhhbvvs0lv8d7"
 
+[node name="TakeDmg_timer" type="Timer" parent="StateMachine/Enemy_Hurt"]
+wait_time = 0.8
+one_shot = true
+
 [node name="Enemy_Attack" type="Node" parent="StateMachine"]
 script = ExtResource("7_vdd48")
 metadata/_custom_type_script = "uid://betjdta38lcfs"
+
+[node name="Attack_timer" type="Timer" parent="StateMachine/Enemy_Attack"]
+one_shot = true
 
 [node name="Enemy_Death" type="Node" parent="StateMachine"]
 script = ExtResource("8_gefvh")
@@ -145,7 +252,8 @@ metadata/_custom_type_script = "uid://csvht5w8te6i5"
 [node name="BodyAnimation" type="AnimatedSprite2D" parent="."]
 position = Vector2(-6, -26)
 sprite_frames = SubResource("SpriteFrames_aiqiw")
-animation = &"chase"
+animation = &"hurt"
+frame_progress = 0.866087
 script = ExtResource("11_gefvh")
 
 [node name="MovementComponent" type="Node" parent="."]
@@ -163,6 +271,7 @@ script = ExtResource("14_vdd48")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxManager/ViewRange"]
 position = Vector2(0, -23)
 shape = SubResource("CircleShape2D_3vckm")
+debug_color = Color(0, 0.554377, 0.908151, 0.42)
 
 [node name="AttackRange" type="Area2D" parent="HitboxManager"]
 script = ExtResource("15_gefvh")
@@ -170,11 +279,26 @@ script = ExtResource("15_gefvh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxManager/AttackRange"]
 position = Vector2(0, -23)
 shape = SubResource("CircleShape2D_aiqiw")
+debug_color = Color(0.970253, 1.92523e-07, 0.455956, 0.42)
+
+[node name="Hurtbox" type="Area2D" parent="HitboxManager"]
+script = ExtResource("18_aiqiw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxManager/Hurtbox"]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_3vckm")
+debug_color = Color(0.554866, 0.561998, 0, 0.42)
+
+[node name="Hitbox" type="Area2D" parent="HitboxManager"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_61dyh")
+debug_color = Color(0, 0.644998, 0.269466, 0.42)
 
 [connection signal="ready" from="MovementComponent" to="MovementComponent" method="_on_ready"]
 [connection signal="body_entered" from="HitboxManager/ViewRange" to="HitboxManager/ViewRange" method="_on_body_entered"]
 [connection signal="body_exited" from="HitboxManager/ViewRange" to="HitboxManager/ViewRange" method="_on_body_exited"]
+[connection signal="body_entered" from="HitboxManager/AttackRange" to="HitboxManager/AttackRange" method="_on_body_entered"]
+[connection signal="body_exited" from="HitboxManager/AttackRange" to="HitboxManager/AttackRange" method="_on_body_exited"]
+[connection signal="area_entered" from="HitboxManager/Hurtbox" to="HitboxManager/Hurtbox" method="_on_area_entered"]

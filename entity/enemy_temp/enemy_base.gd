@@ -21,13 +21,15 @@ func _ready() -> void:
 	#body_animation
 	
 func on_state_changed(new_state: String):
-	print("ustawiam state na idle")
 	body_animation.change_animation(new_state.substr(6, new_state.length() - 6))
 	movement.handle_new_state(new_state)
 	
-func hitbox_manager_update(code: String, body: CharacterBody2D):
+func hitbox_manager_update(code: String, body: Variant, dmg: Variant ):
 	state_machine.handle_event(code)
-	movement.update_player_body(body)
+	if body!=null: 
+		movement.update_player_body(body)
+	#if dmg: 
+		#combat.handle_smth()
 
 func change_direction(new_direction:float): 
 	body_animation.change_direction(new_direction)
