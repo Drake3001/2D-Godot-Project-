@@ -22,5 +22,9 @@ func on_transition(code: String, body: Variant=null , dmg: Variant = null):
 func handle_new_state(state: String):
 	if state.to_lower() in states_dict:
 		states_dict[state.to_lower()].call()
+
 func handle_attack(): 
 	hitbox.activate_hitbox(player_body)
+	
+func change_direction(new_direction: float):
+	hitbox.set_direction(new_direction)

@@ -32,4 +32,4 @@ func handle_attack_finish():
 		attack_locked=false 
 		handle_event(last_code)
 	else:
-		attack_timer.start() 
+		transition.emit(self, "enemy_attack")

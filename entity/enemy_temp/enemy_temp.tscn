@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c7r222xsjxaim"]
+[gd_scene load_steps=47 format=3 uid="uid://c7r222xsjxaim"]
 
 [ext_resource type="Script" uid="uid://hpycjl74lwc3" path="res://entity/enemy_temp/enemy_base.gd" id="1_3b2tb"]
 [ext_resource type="Script" uid="uid://dhjwvrdepaoy" path="res://entity/enemy_temp/state_machine.gd" id="2_0nhjj"]
@@ -202,13 +202,15 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vckm"]
-radius = 93.0
+radius = 114.004
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aiqiw"]
 radius = 47.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vckm"]
 size = Vector2(34, 47)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_li1su"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_61dyh"]
 size = Vector2(23, 46)
@@ -290,10 +292,21 @@ position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_3vckm")
 debug_color = Color(0.554866, 0.561998, 0, 0.42)
 
-[node name="Hitbox" type="Area2D" parent="HitboxManager"]
+[node name="Hitbox" type="Area2D" parent="HitboxManager" groups=["ENM_ATTACK"]]
 script = ExtResource("20_li1su")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxManager/Hitbox"]
+position = Vector2(0, -23)
+shape = SubResource("CircleShape2D_li1su")
+debug_color = Color(0.343666, 0.485112, 1, 0.42)
+
+[node name="TimerToHit" type="Timer" parent="HitboxManager/Hitbox"]
+wait_time = 0.7
+one_shot = true
+
+[node name="TimerHitTime" type="Timer" parent="HitboxManager/Hitbox"]
+wait_time = 0.2
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -23)

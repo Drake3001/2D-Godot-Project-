@@ -32,5 +32,6 @@ func hitbox_manager_update(code: String, body: Variant, dmg: Variant ):
 	#if dmg: 
 		#combat.handle_smth()
 
-func change_direction(new_direction:float): 
+func change_direction(new_direction:float):
+	hitbox_manager.change_direction(new_direction)
 	body_animation.change_direction(new_direction)
