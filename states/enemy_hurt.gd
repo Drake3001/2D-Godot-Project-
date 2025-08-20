@@ -31,4 +31,4 @@ func handle_hurt_finished():
 	if last_code!="":
 		handle_event(last_code)
 	else: 
-		transition.emit(self, "Enemy_attack")
+		return_to_previous()

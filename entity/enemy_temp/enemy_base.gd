@@ -23,6 +23,7 @@ func _ready() -> void:
 func on_state_changed(new_state: String):
 	body_animation.change_animation(new_state.substr(6, new_state.length() - 6))
 	movement.handle_new_state(new_state)
+	hitbox_manager.handle_new_state(new_state)
 	
 func hitbox_manager_update(code: String, body: Variant, dmg: Variant ):
 	state_machine.handle_event(code)

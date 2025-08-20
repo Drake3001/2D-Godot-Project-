@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c7r222xsjxaim"]
+[gd_scene load_steps=46 format=3 uid="uid://c7r222xsjxaim"]
 
 [ext_resource type="Script" uid="uid://hpycjl74lwc3" path="res://entity/enemy_temp/enemy_base.gd" id="1_3b2tb"]
 [ext_resource type="Script" uid="uid://dhjwvrdepaoy" path="res://entity/enemy_temp/state_machine.gd" id="2_0nhjj"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dbdojb65tdqe1" path="res://entity/enemy_temp/view_range.gd" id="14_vdd48"]
 [ext_resource type="Script" uid="uid://ed64gftlewio" path="res://entity/enemy_temp/attack_range.gd" id="15_gefvh"]
 [ext_resource type="Script" uid="uid://l7rbmw4phgnu" path="res://entity/enemy_temp/hurtbox.gd" id="18_aiqiw"]
+[ext_resource type="Script" uid="uid://ckdbaqf1iynw4" path="res://entity/enemy_temp/hitbox.gd" id="20_li1su"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aiqiw"]
 atlas = ExtResource("9_3vckm")
@@ -201,10 +202,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vckm"]
-radius = 99.0202
+radius = 93.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aiqiw"]
-radius = 41.0122
+radius = 47.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vckm"]
 size = Vector2(34, 47)
@@ -290,6 +291,9 @@ shape = SubResource("RectangleShape2D_3vckm")
 debug_color = Color(0.554866, 0.561998, 0, 0.42)
 
 [node name="Hitbox" type="Area2D" parent="HitboxManager"]
+script = ExtResource("20_li1su")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxManager/Hitbox"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -23)
