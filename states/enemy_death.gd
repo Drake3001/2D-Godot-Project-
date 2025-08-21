@@ -5,7 +5,7 @@ func enter():
 	print("Enter - Death")
 
 func exit():
-	print("Exit - Death") 
+	print("Exit - Death")
 
 func handle_event(code: String):
 	pass

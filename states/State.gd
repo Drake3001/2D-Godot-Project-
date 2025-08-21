@@ -9,6 +9,8 @@ func enter():
 func exit():
 	pass 
 func handle_event(code: String):
+	if code == "Die":
+		transition.emit(self, "Enemy_death")
 	if code=="TakeDmg": 
 		transition.emit(self, "Enemy_hurt")
 func return_to_previous(): 

@@ -3,6 +3,7 @@ class_name Enemy_Hurt
 
 func enter(): 
 	print("Enter - hurt")
+	dmg_locked = true
 	take_dmg.start()
 
 func exit():
@@ -16,7 +17,6 @@ var dmg_locked : bool
 func _ready(): 
 	take_dmg.timeout.connect(handle_hurt_finished)
 
-
 func handle_event(code: String):
 	super(code)
 	if dmg_locked:
@@ -28,6 +28,7 @@ func handle_event(code: String):
 			transition.emit(self, "Enemy_chase")
 			
 func handle_hurt_finished():
+	dmg_locked = false
 	if last_code!="":
 		handle_event(last_code)
 	else: 
